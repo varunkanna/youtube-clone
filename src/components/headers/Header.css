@@ -7,7 +7,7 @@
     height: 15vh;
     padding: 1rem 3rem;
 
-    background-color: var(--black-primary);
+    background-color: var(--black-secondary);
 }
 .app__side{
     flex: 0.1;
@@ -26,6 +26,8 @@ form{
     flex: 0.4;
     display: flex;
     border: 1px solid var(--text-color);
+    border-radius: 6px;
+    overflow: hidden;
 }
 .app__search{
     width: 100%;

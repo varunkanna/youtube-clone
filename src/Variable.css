@@ -9,4 +9,11 @@
     --break-point-medium: 1224px;
     --break-point-small: 520px;
 }
+.app_container{
+    background-color: var(--black-primary);
+    color: var(--text-color);
+}
+::-webkit-scrollbar {
+    width: 0;
+  }
 

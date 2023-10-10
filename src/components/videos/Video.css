@@ -1,0 +1,67 @@
+.app__video{
+    margin-bottom: 1rem;
+    padding: .7rem;
+    cursor: pointer;
+    font-size: .7rem;
+    font-weight: 500;
+}
+.video_top{
+    margin-bottom: .5rem;
+    position: relative;
+}
+.video_img{
+    width: 100%;
+    border-radius: 10px;
+    transition: .3s;
+}
+.video_img:hover{
+    transform: scale(1.02);
+    border-radius: 0;
+}
+.video_top_span{
+    position: absolute;
+    right: .3rem;
+    bottom: .3rem;
+
+    z-index: 999;
+    /* color: white; */
+    background-color: var(--black-primary);
+    border-radius: 3px;
+    padding: 0.05rem .2rem ;
+}
+
+/* video_title */
+.video_title{
+    margin-bottom: .1rem;
+    color: white;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+/* video_details */
+.video_details{
+    display: flex;
+    align-items: center;
+}
+.video_details_span::before{
+    content: " • ";
+    margin: 0 4px;
+}
+
+/* video_chennal */
+.video_chennal{
+    display: flex;
+    align-items: center;
+    margin: .5rem 0;
+}
+.video_chennal img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: .5rem;
+}
+.video_chennal p{
+    margin-bottom: 0;
+}

@@ -1,0 +1,26 @@
+.app__categories{
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+}
+.app__categories::-webkit-scrollbar {
+    width: 0;
+  }
+.span{
+    white-space: nowrap;
+    /* writing-mode: vertical-lr; */
+    /* writing-mode:vertical-rl; */
+    margin-right: 1rem;
+    border: 1px solid var(--text-color);
+    border-radius: 999px;
+    padding: .5rem;
+    cursor: pointer;
+}
+.span:hover{
+    background-color: #374a59;
+}
+.span.active{
+    background-color: #606060;
+    color: white;
+    border: 1px solid var(--border-color);
+}

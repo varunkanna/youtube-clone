@@ -2,10 +2,11 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import CategoriesBar from "../../components/categoriesBar/CategoriesBar";
 import Video from "../../components/videos/Video";
+import './HomeScreens.css'
 
 const HomeScreens = () => {
   return (
-    <Container fluid>
+    <Container fluid className="app__home-screen">
       <CategoriesBar />
       <Row>
         {[...new Array(20)].map(() => (
