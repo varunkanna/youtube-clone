@@ -4,7 +4,7 @@ import './Video.css'
 
 const Video = () => {
   return (
-    <div className='app__video' >
+    <div className='app__video'>
       <div className='video_top'>
         <img className='video_img' src='https://i.ytimg.com/vi/YysDQieIkIo/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCdOqd_WsBCuXqr2GO88-_rX3w-8Q' alt='' />
         <span className='video_top_span'>05:16</span>
