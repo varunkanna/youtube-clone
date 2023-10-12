@@ -4,15 +4,33 @@ import Header from "./components/headers/Header";
 import Sidebar from "./components/sidebar/Sidebar";
 import HomeScreens from "./screens/homeScreens/HomeScreens";
 import "./Variable.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LoginScreens from "./screens/loginScreens/LoginScreens";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Layout = ({ children }) => {
+  const navigate = useNavigate();
+
+  // side bar taggle
   const [sidebar, setSidebar] = useState(false);
   const handleToggle = () => {
     setSidebar((preval) => !preval);
   };
+
+  // Auth Redirect
+  const accessToken = useSelector((state) => state.auth.accessToken);
+  const Loader = async () => {
+    if (!accessToken) {
+      navigate('/auth')
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    Loader();
+  }, [accessToken])
+
   return (
     <>
       <Header handleToggle={handleToggle} />

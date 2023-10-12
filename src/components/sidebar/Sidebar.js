@@ -5,11 +5,30 @@ import { BiHistory } from "react-icons/bi";
 import { ImSad2 } from "react-icons/im";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import "./Sidebar.css";
+import { auth } from "../../firebase";
+import { signOut } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { LogoutFun } from "../../redux/AuthSlice";
 
-const sidebar = ({sidebar, handleToggle}) => {
-  console.log(sidebar)
+const Sidebar = ({ sidebar, handleToggle }) => {
+  const dispatch = useDispatch();
+  // console.log(sidebar)
+  const handleLogOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        dispatch(LogoutFun());
+        console.log("sign-out-success")
+      })
+      .catch((error) => {
+        console.log("sign-out error", error)
+      });
+  };
   return (
-    <nav className={sidebar ? "app__sidebar open" : "app__sidebar"} onClick={() => handleToggle(false)}>
+    <nav
+      className={sidebar ? "app__sidebar open" : "app__sidebar"}
+      onClick={() => handleToggle(false)}
+    >
       <li>
         <AiFillHome />
         <span>Home</span>
@@ -36,7 +55,7 @@ const sidebar = ({sidebar, handleToggle}) => {
       </li>
 
       <hr />
-      <li>
+      <li onClick={handleLogOut}>
         <RiLogoutBoxRLine />
         <span>Logout</span>
       </li>
@@ -45,4 +64,4 @@ const sidebar = ({sidebar, handleToggle}) => {
   );
 };
 
-export default sidebar;
+export default Sidebar;
