@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
       <Header handleToggle={handleToggle} />
       <div className="app_container d-flex flex-row">
         <Sidebar sidebar={sidebar} handleToggle={handleToggle} />
-        <Container fluid className="app__main">
+        <Container className="app__main">
           {/* <HomeScreens /> */}
           {children}
         </Container>
