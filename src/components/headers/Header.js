@@ -4,8 +4,11 @@ import { BsSearch } from "react-icons/bs";
 import { BiSolidBell } from "react-icons/bi";
 import { MdApps } from "react-icons/md";
 import "./Header.css";
+import { useSelector } from "react-redux";
 
 const Header = ({handleToggle}) => {
+  // user Details
+  const user = useSelector((state) => state.auth.user);
   const onHandle = (e) => {
     e.preventDefault();
     console.log(e.target.search.value);
@@ -28,7 +31,7 @@ const Header = ({handleToggle}) => {
         <BiSolidBell className="app__bell" size={20} />
         <MdApps className="app__app-menu" size={20} />
         <img
-          src={"/images/AppUser.png"}
+          src={user ? user.image : '/images/AppUser.png'}
           alt="user"
           width={"50px"}
           className="app__user"
