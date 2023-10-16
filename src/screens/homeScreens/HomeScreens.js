@@ -9,7 +9,7 @@ import { addVideos } from "../../redux/VideoSlice";
 
 const HomeScreens = () => {
   const dispatch = useDispatch();
-  const videoData = useSelector((state) => state.video.videoData.videos);
+  const videoData = useSelector((state) => state.video.videoData);
   // console.log("video rdx -->", videoData);
   const videoList = () => {
     const res = request("/videos", {
@@ -38,15 +38,15 @@ const HomeScreens = () => {
     <Container fluid className="app__home-screen">
       <CategoriesBar />
       <Row>
-        {videoData.length > 0
-          ? videoData.map((video) => (
+        {videoData != null && videoData.videos.length > 0
+          ? videoData.videos.map((video) => (
               <Col lg={3} md={4}>
                 <Video video={video} key={video.id} />
               </Col>
             ))
           : [...new Array(20)].map(() => (
               <Col lg={3} md={4}>
-                <Video />
+                {/* <Video /> */}
               </Col>
             ))}
       </Row>
