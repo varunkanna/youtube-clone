@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AiFillEye } from "react-icons/ai";
 import "./Video.css";
-import moment, { duration } from "moment";
+import moment from "moment";
 import numeral from "numeral";
 import request from "../../Api";
 
@@ -20,34 +20,37 @@ const Video = ({ video }) => {
 
   const [duartion, setDuartion] = useState(null)
   const [view, setView] = useState(null)
+  const [chennalIcon, setChennalIcon] = useState(null)
 
   const duation_sec = moment.duration(duartion).asSeconds();
   const duration_val = moment.utc(duation_sec * 1000).format("mm:ss");
-
-  
+  const video_id = id?.videoId || id;
   useEffect(() => {
     const getVideoDetails = async () => {
       // console.log(id)
-      const { data: {item} } = await request('/videos', {
+      const { data:{ items } } = await request('/videos', {
         params: {
           part: "contentDetails,statistics",
-          id: id
+          id: video_id
         }
       })
-      console.log("item -->", item)
+      setDuartion(items[0].contentDetails.duartion)
+      setView(items[0].statistics.viewCount)
+      // console.log("item -->", items)
     }
     getVideoDetails()
-  }, [id])
+  }, [video_id])
 
   useEffect(() => {
     const getChannelDetails = async () => {
-      const { data: {item} } = await request('/channels', {
+      const { data: {items} } = await request('/channels', {
         params: {
           part: "snippet",
           id: channelId
         }
       })
-      console.log("channels -->", item)
+      setChennalIcon(items[0].snippet.thumbnails.default.url)
+      // console.log("channels -->", items)
     }
     getChannelDetails()
   }, [channelId])
@@ -73,8 +76,8 @@ const Video = ({ video }) => {
       </div>
       <div className="video_chennal">
         <img
-          src="https://yt3.ggpht.com/5YiK22wiL_PmOjfZa2JqylsgLDHHdwD-aeoh11znaqc8BMbQVAauJwlgeeNTAaS4ykLNAIGpWA=s68-c-k-c0x00ffffff-no-rj"
-          alt=""
+          src={chennalIcon}
+          alt="chennalIcon"
         />
         <p>{channelTitle}</p>
       </div>

@@ -6,11 +6,13 @@ import "./HomeScreens.css";
 import { useDispatch, useSelector } from "react-redux";
 import request from "../../Api";
 import { addVideos } from "../../redux/VideoSlice";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const HomeScreens = () => {
   const dispatch = useDispatch();
   const videoData = useSelector((state) => state.video.videoData);
-  // console.log("video rdx -->", videoData);
+  console.log("video rdx -->", videoData);
+  const count = videoData?.videos.length > 0 ? videoData?.videos.length : 0;
   const videoList = () => {
     const res = request("/videos", {
       params: {
@@ -34,21 +36,32 @@ const HomeScreens = () => {
     videoList();
   }, [dispatch]);
 
+  const fetchData = () => {
+    console.log("more data")
+  }
+
   return (
     <Container fluid className="app__home-screen">
       <CategoriesBar />
       <Row>
-        {videoData != null && videoData.videos.length > 0
-          ? videoData.videos.map((video) => (
-              <Col lg={3} md={4}>
-                <Video video={video} key={video.id} />
-              </Col>
-            ))
-          : [...new Array(20)].map(() => (
-              <Col lg={3} md={4}>
-                {/* <Video /> */}
-              </Col>
-            ))}
+      {/* <InfiniteScroll
+        dataLength={count}
+        next={fetchData}
+        hasMore={true}
+        loader={
+          <div className="spinner-border text-danger d-block mx-auto"></div>
+        }
+      > */}
+        {videoData?.videos && videoData.videos.length > 0
+          ? videoData.videos.map((video) => {
+              return (
+                <Col lg={3} md={4}>
+                  <Video video={video} key={video.id} />
+                </Col>
+              );
+            })
+          : [...new Array(20)].map(() => <Col lg={3} md={4}></Col>)}
+      {/* </InfiniteScroll> */}
       </Row>
     </Container>
   );
